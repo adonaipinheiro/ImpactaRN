@@ -1,4 +1,4 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
 import { SignIn } from "@screens";
 
 export const MainStackScreenNames = {
@@ -12,12 +12,17 @@ export type MainStackParams = {
 const MainStackNavigator =
     createNativeStackNavigator<MainStackParams>();
 
+const signInScreenOptions: NativeStackNavigationOptions = {
+    headerShown: false
+}
+
 export function MainStack() {
     return (
         <>
             <MainStackNavigator.Screen
                 name={MainStackScreenNames.SignIn}
                 component={SignIn}
+                options={signInScreenOptions}
             />
         </>
     )
