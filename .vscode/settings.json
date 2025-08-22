@@ -8,12 +8,12 @@
         "*.tsx": "${capture}.ts",
         "tsconfig.json": "tsconfig.*.json",
         "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
-        ".config": ".eslintrc.js, .gitignore, .prettierrc.js, .watchmanconfig, app.json, babel.config.js, Gemfile, Gemfile.lock, jest.config.js, metro.config.js, tsconfig.json"
+        ".config": ".eslintrc.js, .gitignore, .prettierrc.js, .watchmanconfig, app.json, babel.config.js, Gemfile, Gemfile.lock, jest.config.js, metro.config.js, tsconfig.json, .editorconfig"
     },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "always",
-        "source.organizeImports": "always"
     },
+    "explorer.compactFolders": false,
     "eslint.validate": [
         "javascript",
         "javascriptreact",
