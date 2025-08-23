@@ -1,12 +1,22 @@
+import { Image, Platform, StyleSheet, Text } from "react-native";
+
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
-import { SignIn } from "@screens";
+import { Dashboard, SignIn, SignUp } from "@screens";
+import { Colors } from "@utils";
+
+import { Images } from "@assets";
+import { useAuthStore, useUserStore } from "@store";
 
 export const MainStackScreenNames = {
     SignIn: 'SignIn',
+    SignUp: "SignUp",
+    Dashboard: "Dashboard",
 } as const;
 
 export type MainStackParams = {
     [MainStackScreenNames.SignIn]: undefined;
+    [MainStackScreenNames.SignUp]: undefined;
+    [MainStackScreenNames.Dashboard]: undefined;
 };
 
 const MainStackNavigator =
@@ -16,14 +26,65 @@ const signInScreenOptions: NativeStackNavigationOptions = {
     headerShown: false
 }
 
+const signUpScreenOptions: NativeStackNavigationOptions = {
+    headerBackVisible: true,
+    headerBackButtonDisplayMode: "minimal",
+    headerTitle: () => <Image source={Images.logoImpacta} style={styles.image} resizeMode="contain" />,
+    headerTitleAlign: "center",
+    animation: Platform.OS === "ios" ? "default" : "none"
+}
+
+const dashboardScreenOptions = (image: string, signOut: () => void): NativeStackNavigationOptions => ({
+    headerTitle: () => <Image source={Images.logoImpacta} style={styles.image} resizeMode="contain" />,
+    headerLeft: () => <Image source={{ uri: image }} style={styles.userAvatar} resizeMode="contain" />,
+    headerRight: () => <Text style={styles.signOutText} onPress={signOut}>Sair</Text>
+})
+
 export function MainStack() {
+    const auth = useAuthStore(state => state.tokens);
+    const clear = useAuthStore(state => state.clear);
+    const user = useUserStore(state => state.user);
+
     return (
         <>
-            <MainStackNavigator.Screen
-                name={MainStackScreenNames.SignIn}
-                component={SignIn}
-                options={signInScreenOptions}
-            />
+            {auth && user ? (
+                <MainStackNavigator.Screen
+                    name={MainStackScreenNames.Dashboard}
+                    component={Dashboard}
+                    options={dashboardScreenOptions(user.avatar, clear)}
+                />
+            ) : (
+                <>
+                    <MainStackNavigator.Screen
+                        name={MainStackScreenNames.SignIn}
+                        component={SignIn}
+                        options={signInScreenOptions}
+                    />
+                    <MainStackNavigator.Screen
+                        name={MainStackScreenNames.SignUp}
+                        component={SignUp}
+                        options={signUpScreenOptions}
+                    />
+                </>
+            )}
+
+
         </>
     )
 }
+
+export const styles = StyleSheet.create({
+    image: {
+        width: "80%",
+        height: 20
+    },
+    userAvatar: {
+        width: 24,
+        height: 24,
+        borderRadius: 12,
+        backgroundColor: Colors.gray[300]
+    },
+    signOutText: {
+        color: Colors.white[100]
+    }
+})

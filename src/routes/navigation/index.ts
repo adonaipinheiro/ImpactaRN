@@ -1,3 +1,3 @@
-export * from '.';
+export * from './navigation';
 export * from './coordinator';
 

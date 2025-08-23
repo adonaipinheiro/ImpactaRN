@@ -8,7 +8,7 @@ import { Spacer, Button, Input } from "@components";
 import { useSignIn, useSignInForm } from "./hooks";
 
 export function SignIn() {
-    const { t, onSubmit } = useSignIn();
+    const { t, onSubmit, isPending, handleGoToSignUp } = useSignIn();
     const { errors, handleSubmit, control } = useSignInForm();
 
     return (
@@ -47,9 +47,9 @@ export function SignIn() {
                 )}
             />
             <Spacer size={16} />
-            <Button text={t("enter")} onPress={handleSubmit(onSubmit)} />
+            <Button text={t("enter")} loading={isPending} onPress={handleSubmit(onSubmit)} />
             <Spacer size={16} />
-            <Button text={t("register")} type="outlined" />
+            <Button text={t("register")} type="outlined" onPress={handleGoToSignUp} />
         </View>
     )
 }

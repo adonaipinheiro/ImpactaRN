@@ -3,8 +3,8 @@ import { useTranslation } from "@locales"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-const signInUserFormSchema = ({ requiredText, emailErrorText }: { requiredText: string, emailErrorText: string }) => z.object({
-    email: z.string({ message: requiredText }).email({ message: emailErrorText }),
+const signInUserFormSchema = ({ requiredText }: { requiredText: string }) => z.object({
+    email: z.string({ message: requiredText }).email({ message: "Digite um e-mail válido" }),
     password: z.string({ message: requiredText }),
 })
 
@@ -19,8 +19,7 @@ export function useSignInForm() {
     } = useForm<signInUserFormData>({
         resolver: zodResolver(signInUserFormSchema(
             {
-                requiredText: t("inputRequired"),
-                emailErrorText: t("emailInputError")
+                requiredText: t("inputRequired")
             }
         ))
     })
