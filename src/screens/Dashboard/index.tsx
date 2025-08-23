@@ -8,11 +8,11 @@ import { useDashboard } from "./hooks";
 import { styles } from "./styles";
 
 export function Dashboard() {
-    const { data, isLoading } = useDashboard()
+    const { data, isFetching } = useDashboard()
 
-    if (isLoading) {
+    if (isFetching) {
         <View style={styles.loadingArea}>
-            <ActivityIndicator color={Colors.white[100]} />
+            <ActivityIndicator size="large" color={Colors.white[100]} />
         </View>
     }
 

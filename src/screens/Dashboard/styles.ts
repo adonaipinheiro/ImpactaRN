@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 8,
         backgroundColor: Colors.white[100],
-        justifyContent: "space-evenly"
+        justifyContent: "space-between"
     },
     image: {
         width: '100%',
