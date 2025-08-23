@@ -10,10 +10,10 @@ export interface SpacerProps {
 }
 
 function SpacerComponent(props: SpacerProps) {
-    const styles = stylesWithParams(props)
+    const styles = stylesWithParams(props);
 
-    return <View style={styles.container} />
+    return <View style={styles.container} />;
 }
 
-export const Spacer = memo(SpacerComponent)
+export const Spacer = memo(SpacerComponent);
 

@@ -18,4 +18,4 @@ export const ptBR = {
     // SignUp Screen
     signUpScreenUserInput: "Digite seu usuário",
     signUpScreenConfirmPass: "Confirme sua senha aqui",
-}
+};

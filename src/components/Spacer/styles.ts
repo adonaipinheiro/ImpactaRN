@@ -7,4 +7,4 @@ export const stylesWithParams = ({ size, orientation = "vertical" }: SpacerProps
         width: orientation === "horizontal" ? size : 0,
         height: orientation === "vertical" ? size : 0,
     }
-})
+});

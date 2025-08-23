@@ -4,7 +4,7 @@ import { Colors } from "@utils";
 
 import { ButtonProps } from ".";
 
-type StyleParamsType = Pick<ButtonProps, "type" | "loading">
+type StyleParamsType = Pick<ButtonProps, "type" | "loading">;
 
 export const stylesWithParams = ({ type, loading }: StyleParamsType) => StyleSheet.create({
     container: {
@@ -25,4 +25,4 @@ export const stylesWithParams = ({ type, loading }: StyleParamsType) => StyleShe
         color: type === "primary" ? Colors.black[100] : Colors.white[100],
         fontWeight: "bold"
     }
-})
+});

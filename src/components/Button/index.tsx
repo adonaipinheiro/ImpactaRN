@@ -6,7 +6,7 @@ import { useTranslation } from "@locales";
 
 import { stylesWithParams } from "./styles";
 
-type ButtonPropType = "primary" | "outlined"
+type ButtonPropType = "primary" | "outlined";
 
 export interface ButtonProps extends TouchableOpacityProps {
     text: string;
@@ -27,8 +27,8 @@ function ButtonComponent({ text, type = "primary", loading = false, ...props }: 
         >
             <Text style={styles.text}>{loading ? t("loading") : text}</Text>
         </TouchableOpacity>
-    )
+    );
 }
 
-export const Button = memo(ButtonComponent)
+export const Button = memo(ButtonComponent);
 

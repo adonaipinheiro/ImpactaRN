@@ -1,2 +1,2 @@
-export * from "./colors"
+export * from "./colors";
 export { requestMonitor, responseMonitor, catchError } from './monitors/httpMonitors';

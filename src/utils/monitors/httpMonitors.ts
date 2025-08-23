@@ -30,7 +30,7 @@ export function catchError(error: AxiosError) {
             text1: error.response?.data as string ?? 'Erro inesperado',
             text2: error.message,
             position: "bottom"
-        })
+        });
 
         return Promise.reject(error);
     }
@@ -41,6 +41,6 @@ export function catchError(error: AxiosError) {
         text1: 'Atenção',
         text2: "Erro inesperado",
         position: "bottom"
-    })
+    });
     return Promise.reject(error);
 }

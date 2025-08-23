@@ -1,6 +1,7 @@
 import { Image, Platform, StyleSheet, Text } from "react-native";
 
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { useQueryClient } from '@tanstack/react-query';
 
 import { Images } from "@assets";
 import { Dashboard, SignIn, SignUp } from "@screens";
@@ -24,7 +25,7 @@ const MainStackNavigator =
 
 const signInScreenOptions: NativeStackNavigationOptions = {
     headerShown: false
-}
+};
 
 const signUpScreenOptions: NativeStackNavigationOptions = {
     headerBackVisible: true,
@@ -32,18 +33,24 @@ const signUpScreenOptions: NativeStackNavigationOptions = {
     headerTitle: () => <Image source={Images.logoImpacta} style={styles.image} resizeMode="contain" />,
     headerTitleAlign: "center",
     animation: Platform.OS === "ios" ? "default" : "none"
-}
+};
 
 const dashboardScreenOptions = (image: string, signOut: () => void): NativeStackNavigationOptions => ({
     headerTitle: () => <Image source={Images.logoImpacta} style={styles.image} resizeMode="contain" />,
     headerLeft: () => <Image source={{ uri: image }} style={styles.userAvatar} resizeMode="contain" />,
     headerRight: () => <Text style={styles.signOutText} onPress={signOut}>Sair</Text>
-})
+});
 
 export function MainStack() {
     const auth = useAuthStore(state => state.tokens);
     const clear = useAuthStore(state => state.clear);
     const user = useUserStore(state => state.user);
+    const queryClient = useQueryClient();
+
+    function signOut() {
+        queryClient.clear();
+        clear();
+    }
 
     return (
         <>
@@ -51,7 +58,7 @@ export function MainStack() {
                 <MainStackNavigator.Screen
                     name={MainStackScreenNames.Dashboard}
                     component={Dashboard}
-                    options={dashboardScreenOptions(user.avatar, clear)}
+                    options={dashboardScreenOptions(user.avatar, signOut)}
                 />
             ) : (
                 <>
@@ -70,7 +77,7 @@ export function MainStack() {
 
 
         </>
-    )
+    );
 }
 
 export const styles = StyleSheet.create({
@@ -87,4 +94,4 @@ export const styles = StyleSheet.create({
     signOutText: {
         color: Colors.white[100]
     }
-})
+});

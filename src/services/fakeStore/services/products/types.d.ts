@@ -11,6 +11,6 @@ export type ProductType = {
         slug: string
     };
     images: [string];
-}
+};
 
-export type ProductsGetResponseType = ProductType[]
+export type ProductsGetResponseType = ProductType[];

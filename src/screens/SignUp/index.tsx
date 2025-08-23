@@ -82,7 +82,7 @@ export function SignUp() {
             <Spacer size={16} />
             <Button text={t("goBack")} type="outlined" onPress={handleGoBack} />
         </View>
-    )
+    );
 }
 
 export const styles = StyleSheet.create({
@@ -96,4 +96,4 @@ export const styles = StyleSheet.create({
         width: "100%",
         height: 50
     }
-})
+});

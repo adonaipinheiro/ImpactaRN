@@ -5,13 +5,13 @@ export type User = {
     avatar: string;
     role: string;
     id: number;
-}
+};
 
 export type AddNewUserRequestType = {
     name: string;
     email: string;
     password: string;
     avatar: string;
-}
+};
 
-export type AddNewUserResponseType = User
+export type AddNewUserResponseType = User;

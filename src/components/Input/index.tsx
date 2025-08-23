@@ -12,7 +12,7 @@ export function Input({ errorMessage, ...props }: InputProps) {
             <TextInput style={styles.textInput} {...props} />
             {errorMessage && <Text style={styles.errorMessage}>* {errorMessage}</Text>}
         </View>
-    )
+    );
 }
 
 export const styles = StyleSheet.create({
@@ -32,4 +32,4 @@ export const styles = StyleSheet.create({
         fontStyle: "italic",
         color: Colors.notification
     }
-})
+});

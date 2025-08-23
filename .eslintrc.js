@@ -6,6 +6,8 @@ module.exports = {
     plugins: ['import', '@typescript-eslint'],
     extends: ['eslint:recommended', '@react-native', 'plugin:@typescript-eslint/recommended'],
     rules: {
+        semi: ['error', 'always'],
+        '@typescript-eslint/semi': ['error', 'always'],
         'no-unused-vars': 'off',
         'no-undef': 'off',
         'import/order': ['error', {

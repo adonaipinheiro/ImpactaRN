@@ -7,5 +7,5 @@ export async function addNewUserRequest(params: AddNewUserRequestType) {
         id: Symbol(params.email),
         ...params
     })
-        .then(r => r.data)
+        .then(r => r.data);
 }

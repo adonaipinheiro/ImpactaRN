@@ -5,7 +5,7 @@ import { User } from "../users/types";
 
 export async function authRequest(params: AuthRequestType) {
     return await fakeStoreApi.post<AuthResponseType>("auth/login", params)
-        .then(r => r.data)
+        .then(r => r.data);
 }
 
 export async function authGetUserRequest(params: AuthGetUserRequestType) {
@@ -14,5 +14,5 @@ export async function authGetUserRequest(params: AuthGetUserRequestType) {
             Authorization: `Bearer ${params.access_token}`
         }
     })
-        .then(r => r.data)
+        .then(r => r.data);
 }

@@ -4,5 +4,5 @@ import { ProductsGetResponseType } from "./types";
 
 export async function productsGetRequest() {
     return await fakeStoreApi.get<ProductsGetResponseType>("products")
-        .then(r => r.data)
+        .then(r => r.data);
 }

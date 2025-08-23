@@ -7,12 +7,12 @@ import { useDashboard } from "./hooks";
 import { styles } from "./styles";
 
 export function Dashboard() {
-    const { data, isFetching } = useDashboard()
+    const { data, isFetching } = useDashboard();
 
     if (isFetching) {
         <View style={styles.loadingArea}>
             <ActivityIndicator size="large" color={Colors.white[100]} />
-        </View>
+        </View>;
     }
 
     return (
@@ -40,6 +40,6 @@ export function Dashboard() {
                 )}
             />
         </View>
-    )
+    );
 }
 

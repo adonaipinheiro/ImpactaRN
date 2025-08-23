@@ -4,7 +4,7 @@ import Toast from 'react-native-toast-message';
 import { useApp } from "@hooks";
 import { Router } from "@routes";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 export default function App() {
     useApp();
@@ -14,5 +14,5 @@ export default function App() {
             <Router />
             <Toast />
         </QueryClientProvider>
-    )
+    );
 }

@@ -9,8 +9,8 @@ import { signInUserFormData } from "./useSignInForm";
 
 export function useSignIn() {
     const { t } = useTranslation();
-    const setTokens = useAuthStore(state => state.setTokens)
-    const setUser = useUserStore(state => state.setUser)
+    const setTokens = useAuthStore(state => state.setTokens);
+    const setUser = useUserStore(state => state.setUser);
 
     const {
         mutateAsync: productsGetMutateAsync,
@@ -18,7 +18,7 @@ export function useSignIn() {
     } = useMutation({
         mutationKey: ["productsGetRequest"],
         mutationFn: productsGetRequest,
-    })
+    });
 
     const {
         mutateAsync: authGetUserMutateAsync,
@@ -27,9 +27,9 @@ export function useSignIn() {
         mutationKey: ["authGetUserRequest"],
         mutationFn: (params: AuthGetUserRequestType) => authGetUserRequest(params),
         onSuccess: params => {
-            setUser(params)
+            setUser(params);
         }
-    })
+    });
 
     const {
         mutateAsync: authMutateAsync,
@@ -38,20 +38,20 @@ export function useSignIn() {
         mutationKey: ["authRequest"],
         mutationFn: (params: AuthRequestType) => authRequest(params),
         onSuccess: async params => {
-            await productsGetMutateAsync()
+            await productsGetMutateAsync();
             await authGetUserMutateAsync(params)
                 .then(() => {
-                    setTokens(params)
-                })
+                    setTokens(params);
+                });
         }
-    })
+    });
 
     const onSubmit = async (data: signInUserFormData) => {
-        await authMutateAsync(data)
-    }
+        await authMutateAsync(data);
+    };
 
     function handleGoToSignUp() {
-        coordinator.gotToSignUp()
+        coordinator.gotToSignUp();
     }
 
     return {
@@ -59,5 +59,5 @@ export function useSignIn() {
         onSubmit,
         isPending: authGetUserIsPending || authIsPending || productsGetIsPending,
         handleGoToSignUp
-    }
+    };
 }

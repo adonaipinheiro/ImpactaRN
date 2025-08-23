@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { useTranslation } from "@locales"
+import { useTranslation } from "@locales";
 
 const signUpUserFormSchema = ({ requiredText, emailErrorText, passwordDontMatch }: { requiredText: string, emailErrorText: string, passwordDontMatch: string }) => z.object({
     name: z.string({ message: requiredText }),
@@ -12,9 +12,9 @@ const signUpUserFormSchema = ({ requiredText, emailErrorText, passwordDontMatch 
 }).refine(({ password, confirm_password }) => password === confirm_password, {
     message: passwordDontMatch,
     path: ["confirm_password"]
-})
+});
 
-export type signUpUserFormData = z.infer<ReturnType<typeof signUpUserFormSchema>>
+export type signUpUserFormData = z.infer<ReturnType<typeof signUpUserFormSchema>>;
 
 export function useSignUpForm() {
     const { t } = useTranslation();
@@ -30,11 +30,11 @@ export function useSignUpForm() {
                 passwordDontMatch: t("passDontMatch")
             }
         ))
-    })
+    });
 
     return {
         handleSubmit,
         errors,
         control
-    }
+    };
 }

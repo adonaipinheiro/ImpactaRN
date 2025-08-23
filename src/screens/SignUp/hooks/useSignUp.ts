@@ -10,7 +10,7 @@ import { signUpUserFormData } from "./useSignUpForm";
 export function useSignUp() {
     const { t } = useTranslation();
     const setTokens = useAuthStore(state => state.setTokens);
-    const setUser = useUserStore(state => state.setUser)
+    const setUser = useUserStore(state => state.setUser);
 
     const {
         mutateAsync: productsGetMutateAsync,
@@ -18,7 +18,7 @@ export function useSignUp() {
     } = useMutation({
         mutationKey: ["productsGetRequest"],
         mutationFn: productsGetRequest,
-    })
+    });
 
     const {
         mutateAsync: authMutateAsync,
@@ -27,10 +27,10 @@ export function useSignUp() {
         mutationKey: ["authRequest"],
         mutationFn: (params: AuthRequestType) => authRequest(params),
         onSuccess: async params => {
-            await productsGetMutateAsync()
-            setTokens(params)
+            await productsGetMutateAsync();
+            setTokens(params);
         }
-    })
+    });
 
     const {
         mutateAsync: addNewUserMutateAsync,
@@ -39,20 +39,20 @@ export function useSignUp() {
         mutationKey: ["addNewUserRequest"],
         mutationFn: (params: AddNewUserRequestType) => addNewUserRequest(params),
         onSuccess: (params) => {
-            setUser(params)
-            authMutateAsync({ email: params.email, password: params.password })
+            setUser(params);
+            authMutateAsync({ email: params.email, password: params.password });
         }
-    })
+    });
 
     const onSubmit = async (data: signUpUserFormData) => {
         await addNewUserMutateAsync({
             ...data,
             avatar: "https://picsum.photos/800"
-        })
-    }
+        });
+    };
 
     function handleGoBack() {
-        coordinator.goBack()
+        coordinator.goBack();
     }
 
     return {
@@ -60,5 +60,5 @@ export function useSignUp() {
         onSubmit,
         isPending: addNewUserIsPending || authIsPending || productsGetIsPending,
         handleGoBack
-    }
+    };
 }

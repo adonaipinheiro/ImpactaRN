@@ -51,7 +51,7 @@ export function SignIn() {
             <Spacer size={16} />
             <Button text={t("register")} type="outlined" onPress={handleGoToSignUp} />
         </View>
-    )
+    );
 }
 
 export const styles = StyleSheet.create({
@@ -65,4 +65,4 @@ export const styles = StyleSheet.create({
         width: "80%",
         height: 40
     }
-})
+});
