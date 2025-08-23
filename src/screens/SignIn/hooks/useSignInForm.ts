@@ -1,7 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslation } from "@locales"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
+import { useTranslation } from "@locales"
 
 const signInUserFormSchema = ({ requiredText }: { requiredText: string }) => z.object({
     email: z.string({ message: requiredText }).email({ message: "Digite um e-mail válido" }),

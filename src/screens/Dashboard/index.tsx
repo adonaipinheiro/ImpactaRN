@@ -1,8 +1,7 @@
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 
-import { Colors } from "@utils";
-
 import { Button, Spacer } from "@components";
+import { Colors } from "@utils";
 
 import { useDashboard } from "./hooks";
 import { styles } from "./styles";

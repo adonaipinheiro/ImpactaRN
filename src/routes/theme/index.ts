@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 
 import { Theme } from '@react-navigation/native';
+
 import { Colors } from '@utils';
 
 export const ImpactaTheme: Theme = {

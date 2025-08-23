@@ -1,7 +1,7 @@
-import { useTranslation } from "@locales";
-import { coordinator } from "@routes";
 import { useMutation } from "@tanstack/react-query";
 
+import { useTranslation } from "@locales";
+import { coordinator } from "@routes";
 import { addNewUserRequest, AddNewUserRequestType, authRequest, AuthRequestType, productsGetRequest } from "@services";
 import { useAuthStore, useUserStore } from "@store";
 

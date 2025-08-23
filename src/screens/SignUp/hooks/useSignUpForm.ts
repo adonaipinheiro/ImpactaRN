@@ -1,7 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslation } from "@locales"
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
+import { useTranslation } from "@locales"
 
 const signUpUserFormSchema = ({ requiredText, emailErrorText, passwordDontMatch }: { requiredText: string, emailErrorText: string, passwordDontMatch: string }) => z.object({
     name: z.string({ message: requiredText }),

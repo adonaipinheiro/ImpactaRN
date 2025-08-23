@@ -1,6 +1,7 @@
-import { requestMonitor, responseMonitor, catchError } from '@utils';
 import axios from 'axios';
 import Config from 'react-native-config';
+
+import { requestMonitor, responseMonitor, catchError } from '@utils';
 
 const fakeStoreApi = axios.create({
     baseURL: Config.BASE_URL,

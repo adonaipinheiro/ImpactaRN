@@ -1,11 +1,11 @@
 import { Image, Platform, StyleSheet, Text } from "react-native";
 
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
-import { Dashboard, SignIn, SignUp } from "@screens";
-import { Colors } from "@utils";
 
 import { Images } from "@assets";
+import { Dashboard, SignIn, SignUp } from "@screens";
 import { useAuthStore, useUserStore } from "@store";
+import { Colors } from "@utils";
 
 export const MainStackScreenNames = {
     SignIn: 'SignIn',
