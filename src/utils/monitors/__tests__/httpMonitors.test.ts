@@ -27,6 +27,15 @@ describe('httpMonitors', () => {
         logSpy.mockRestore();
     });
 
+    it('responseMonitor handles missing url', () => {
+        const response = { config: {}, data: {} } as AxiosResponse;
+        const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+        const result = responseMonitor(response);
+        expect(result).toBe(response);
+        expect(logSpy).toHaveBeenCalledWith('RESPONSE: unknown', JSON.stringify(response.data, null, 4));
+        logSpy.mockRestore();
+    });
+
     it('catchError should handle AxiosError', async () => {
         const error = {
             isAxiosError: true,
@@ -48,14 +57,35 @@ describe('httpMonitors', () => {
     });
 
     it('catchError should handle non-Axios error', async () => {
-        const error = new Error('unknown');
+        const error = {} as AxiosError;
         const showSpy = jest.spyOn(Toast, 'show');
-        await expect(catchError(error as unknown as AxiosError)).rejects.toBe(error);
+        await expect(catchError(error)).rejects.toBe(error);
         expect(showSpy).toHaveBeenCalledWith({
             type: 'error',
             text1: 'Atenção',
             text2: 'Erro inesperado',
             position: 'bottom',
         });
+    });
+
+    it('catchError defaults when response data missing', async () => {
+        const error = {
+            isAxiosError: true,
+            config: {},
+            message: 'oops',
+            name: 'AxiosError',
+            toJSON: () => ({}),
+        } as AxiosError;
+        const showSpy = jest.spyOn(Toast, 'show');
+        const logSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+        await expect(catchError(error)).rejects.toBe(error);
+        expect(logSpy).toHaveBeenCalledWith('ERROR: unknown', expect.any(String));
+        expect(showSpy).toHaveBeenCalledWith({
+            type: 'error',
+            text1: 'Erro inesperado',
+            text2: error.message,
+            position: 'bottom',
+        });
+        logSpy.mockRestore();
     });
 });

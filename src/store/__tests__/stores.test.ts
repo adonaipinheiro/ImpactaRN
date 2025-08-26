@@ -18,6 +18,13 @@ describe('useAuthStore', () => {
     clear();
     expect(useAuthStore.getState().tokens).toBeNull();
   });
+
+  it('ignores token updates when tokens are null', () => {
+    const { setAccessToken, setRefreshToken } = useAuthStore.getState();
+    setAccessToken('x');
+    setRefreshToken('y');
+    expect(useAuthStore.getState().tokens).toBeNull();
+  });
 });
 
 describe('useUserStore', () => {
@@ -34,6 +41,14 @@ describe('useUserStore', () => {
     setRole('user');
     expect(useUserStore.getState().user).toEqual({ email: 'a', password: 'b', id: 1, name: 'd', role: 'user', avatar: 'img2' });
     clear();
+    expect(useUserStore.getState().user).toBeNull();
+  });
+
+  it('ignores updates when user is null', () => {
+    const { updateUser, setAvatar, setRole } = useUserStore.getState();
+    updateUser({ name: 'x' });
+    setAvatar('img');
+    setRole('role');
     expect(useUserStore.getState().user).toBeNull();
   });
 });

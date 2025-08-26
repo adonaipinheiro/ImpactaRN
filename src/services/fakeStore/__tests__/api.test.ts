@@ -16,4 +16,16 @@ describe('fakeStoreApi', () => {
     expect(fakeStoreApi.interceptors.request.handlers.length).toBeGreaterThan(0);
     expect(fakeStoreApi.interceptors.response.handlers.length).toBeGreaterThan(0);
   });
+
+  it('skips interceptors when not in dev', () => {
+    const g = global as unknown as { __DEV__: boolean };
+    const original = g.__DEV__;
+    g.__DEV__ = false;
+    jest.resetModules();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { fakeStoreApi: api } = require('../api');
+    expect(api.interceptors.request.handlers.length).toBe(0);
+    expect(api.interceptors.response.handlers.length).toBe(0);
+    g.__DEV__ = original;
+  });
 });

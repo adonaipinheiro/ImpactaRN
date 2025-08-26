@@ -34,5 +34,12 @@ describe('Dashboard screen', () => {
     const list = component!.root.findByType(FlatList);
     expect(list.props.data).toEqual(data);
   });
+
+  it('handles loading state', () => {
+    (useDashboard as jest.Mock).mockReturnValue({ data: [], isFetching: true });
+    act(() => {
+      renderer.create(<Dashboard />);
+    });
+  });
 });
 

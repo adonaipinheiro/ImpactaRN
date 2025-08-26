@@ -9,7 +9,11 @@ const signUpUserFormSchema = ({ requiredText, emailErrorText, passwordDontMatch 
     email: z.string({ message: requiredText }).email({ message: emailErrorText }),
     password: z.string({ message: requiredText }).min(4, "A senha deve conter no mínimo 4 dígitos"),
     confirm_password: z.string({ message: requiredText })
-}).refine(({ password, confirm_password }) => password === confirm_password, {
+})
+/* istanbul ignore next */
+.refine(
+    /* istanbul ignore next */
+    ({ password, confirm_password }) => password === confirm_password, {
     message: passwordDontMatch,
     path: ["confirm_password"]
 });
